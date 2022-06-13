@@ -5,15 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-<a th:if="${username}"class="btn btn-primary btn-lg" href="/login" role="button">Logout</a>
 
 <br>
 <h3 th:if="${username != null}" th:text="${'Current user: ' + username}"></h3>
 <br>
-<a  id="logo" href="/" >
-<img id="logo-image" src="/img/money-resume.jpg" alt="company-icon">
-</a>
-<ul id="nav-items">
+<ul>
+    <li th:if="${username == null}"><a class="btn btn-primary btn-lg" href="/login">Log In</a></li>
+    <li th:if="${username == null}"><a class="btn btn-primary btn-lg" href="/sign-up">Sign Up</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/allusers">All Users</a></li>
+    <li th:if="${username != null}"><a href="/myfeed">Feed</a></li>
+    <li th:if="${username != null}"><a href="/myProfile">Profile</a></li>
+    <li th:if="${username != null}"><a class="btn btn-primary btn-lg" href="/logout">Logout</a></li>
+</ul>
+<ul>
 
     <li><a href="/aboutus">About Us</a></li>
 </ul>

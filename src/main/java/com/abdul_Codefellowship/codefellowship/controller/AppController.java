@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Controller
 public class AppController  {
@@ -31,6 +32,20 @@ public class AppController  {
     @GetMapping("/signup")
     public String getSignUpPage(){
         return "signup";
+    }
+
+
+    @PostMapping("/logout")
+    public RedirectView logoutUser(Principal p) {
+        if (p != null) {
+            try {
+                request.logout();
+            } catch (ServletException e) {
+                System.out.println("Error logging out.");
+                e.printStackTrace();
+            }
+        }
+        return new RedirectView("/login");
     }
 
 
@@ -57,5 +72,8 @@ public class AppController  {
             e.printStackTrace();
         }
     }
+
+
+
 }
 

@@ -4,7 +4,6 @@ import com.abdul_Codefellowship.codefellowship.model.AppUser;
 import com.abdul_Codefellowship.codefellowship.model.Post;
 import com.abdul_Codefellowship.codefellowship.repositories.AppRepository;
 import com.abdul_Codefellowship.codefellowship.repositories.PostRepository;
-import com.abdul_Codefellowship.codefellowship.repositories.ResumeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class PostController {
@@ -23,8 +21,7 @@ public class PostController {
     @Autowired
     AppRepository appRepository;
 
-    @Autowired
-    ResumeRepository resumeRepository;
+
 
 
     @PostMapping("/add-post")
@@ -39,10 +36,6 @@ public class PostController {
             post.setUserPosts(appUser);
             postRepository.save(post);
 
-//            List<Post> postList = appUser.getPostList();
-
-
-//            m.addAttribute("posts",postList);
 
 
         }

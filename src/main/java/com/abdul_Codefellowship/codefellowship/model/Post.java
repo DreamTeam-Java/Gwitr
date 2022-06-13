@@ -15,8 +15,6 @@ public class Post {
     @ManyToOne
     AppUser userPosts;
 
-    @ManyToOne
-    Resume resumeReview;
 
     public Post() {
     }
@@ -57,11 +55,5 @@ public class Post {
         this.userPosts = userPosts;
     }
 
-    public Resume getResumeReview() {
-        return resumeReview;
-    }
 
-    public void setResumeReview(Resume resumeReview) {
-        this.resumeReview = resumeReview;
-    }
 }

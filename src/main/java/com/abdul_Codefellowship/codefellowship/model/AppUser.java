@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -28,8 +29,18 @@ public class AppUser implements UserDetails {
     @OrderBy("text")
     List<Post> postList;
 
-    @OneToMany(mappedBy = "userResume",cascade = CascadeType.ALL)
-    List<Resume> resumeList;
+
+    @ManyToMany(mappedBy = "followingSet")
+    Set<AppUser> followerSet;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "userName_to_following",
+            joinColumns = {@JoinColumn(name="userName")},
+            inverseJoinColumns = {@JoinColumn(name = "following")}
+    )
+    Set<AppUser> followingSet;
 
 
 
@@ -134,11 +145,19 @@ public class AppUser implements UserDetails {
         this.postList = postList;
     }
 
-    public List<Resume> getResumeList() {
-        return resumeList;
+    public Set<AppUser> getFollowerSet() {
+        return followerSet;
     }
 
-    public void setResumeList(List<Resume> resumeList) {
-        this.resumeList = resumeList;
+    public void setFollowerSet(Set<AppUser> followerSet) {
+        this.followerSet = followerSet;
+    }
+
+    public Set<AppUser> getFollowingSet() {
+        return followingSet;
+    }
+
+    public void setFollowingSet(Set<AppUser> followingSet) {
+        this.followingSet = followingSet;
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -75,9 +76,12 @@ public class HomeController {
             AppUser appUser = appRepository.findByUsername(username);
 
             m.addAttribute("username", username);
+            m.addAttribute("appUser",appUser);
         }
 
         AppUser appUser = appRepository.findById(id).orElseThrow(IllegalAccessError::new);
+        boolean isFollowing = appUser.getFollowingSet().contains(appUser);
+
         m.addAttribute("appUsername",appUser.getUsername());
         m.addAttribute("appUserId",appUser.getId());
         m.addAttribute("user",appUser.getFirstName() + ' '+ appUser.getLastName()+ ' '+appUser.getBio());
@@ -85,14 +89,61 @@ public class HomeController {
         List<Post> postList = appUser.getPostList();
 
         m.addAttribute("post", postList);
+        m.addAttribute("isFollowing", isFollowing);
 
 
         return "user-info";
     }
 
 
+    @GetMapping("/allusers")
+    public String getAllUsersPage(Principal p, Model m) {
+        if (p != null) {
+            AppUser appUser = appRepository.findByUsername(p.getName());
+            m.addAttribute("applicationUser", appUser);
+
+        }
+        List<AppUser> allUsers = appRepository.findAll();
+        m.addAttribute("allUsers", allUsers);
+        return "all-users.html";
+    }
 
 
+    @GetMapping("/myfeed")
+    public String getMyFeed(Principal p, Model m) {
+        if (p != null) {
+            AppUser appUser = appRepository.findByUsername(p.getName());
+            m.addAttribute("applicationUser", appUser);
+            m.addAttribute("appUserId",appUser.getId());
+            m.addAttribute("appUserName",appUser.getFirstName() + ' '+ appUser.getLastName());
+            List<Post> followingPosts = new ArrayList<>();
+            for (AppUser user : appUser.getFollowingSet()) {
+                followingPosts.addAll(user.getPostList());
+            }
+            m.addAttribute("allUserPosts", followingPosts);
+        }
+        return "my-feed";
+    }
+
+
+    @PutMapping("/follow/{id}")
+    RedirectView followUser(@PathVariable long id, Principal p, Model m) {
+        if (p != null) {
+            AppUser appUser = appRepository.findByUsername(p.getName());
+            AppUser publicUser = appRepository.getById(id);
+            if (appUser != null && publicUser != null) {
+                m.addAttribute("applicationUser", appUser);
+                appUser.getFollowingSet().add(publicUser);
+                appRepository.save(appUser);
+            }
+        }
+        return new RedirectView("/user/" + id);
+    }
 
 }
+
+
+
+
+
 
