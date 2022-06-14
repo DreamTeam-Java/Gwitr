@@ -8,12 +8,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.net.Authenticator;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends  WebSecurityConfigurerAdapter {
+
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
@@ -38,13 +44,21 @@ public class WebSecurityConfig extends  WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/signup").permitAll()
+                .antMatchers("/img/**").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/myfeed").permitAll()
+                .antMatchers("/myProfile").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/myProfile")
+                .defaultSuccessUrl("/")
                 .and()
                 .logout()
-                . logoutSuccessUrl("/login");
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .deleteCookies("auth_code", "JSESSIONID")
+                .invalidateHttpSession(true);
     }
 }
