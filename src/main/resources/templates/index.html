@@ -1,20 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.tymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>Welcome to your Home</h1>-->
-<!--<h3 th:if="${user != null}" th:text="${'Current user: ' + user.firstName + ' ' + user.lastName}"></h3>-->
-
-<!--<a th:if="!${username}" href="/login">Log In</a>-->
-<!--<br>-->
-<!--<a th:if="!${username}" href="/signup">Or Sign Up</a>-->
-<!--<a th:if="${username}" href="/login">Log Out</a>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -30,12 +13,12 @@
     <link rel="stylesheet" type="text/css" href="css/footer.css">
 </head>
 <body>
-<img th:src="@{/static/img/default-profile.png}"/>
+<img th:src="@{/img/default-profile.png}"/>
 <main>
     <div class="cool-image-login"  >
         <h1 id="already-member">Already a member?</h1>
         <a  id="hero-logo" href="/login" >
-            <img class="img-fluid" src="static/img/gwiterlogo2.png" alt="Animated-image-sun">
+            <img class="img-fluid" src="/img/gwiterlogo2.png" alt="Animated-image-sun">
         </a>
         <p id="company-promise">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad amet animi architecto, assumenda autem consectetur dicta distinctio esse eveniet ex explicabo illo laudantium nihil non, placeat, repudiandae sunt tempore.
@@ -44,7 +27,7 @@
     </div>
     <div alt="results-story">
 
-        <img src="/static/img/Iphone-placeholder.jpg" class="img-fluid float-right" alt="Responisve image">
+        <img src="/img/Iphone-placeholder.jpg" class="img-fluid float-right" alt="Responisve image">
         <blockquote class="blockquote text-center">
             <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
             <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
