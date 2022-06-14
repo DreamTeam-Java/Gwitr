@@ -2,8 +2,10 @@ package com.abdul_Codefellowship.codefellowship.controller;
 
 import com.abdul_Codefellowship.codefellowship.model.AppUser;
 import com.abdul_Codefellowship.codefellowship.model.Post;
+import com.abdul_Codefellowship.codefellowship.model.Reply;
 import com.abdul_Codefellowship.codefellowship.repositories.AppRepository;
 import com.abdul_Codefellowship.codefellowship.repositories.PostRepository;
+import com.abdul_Codefellowship.codefellowship.repositories.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ public class PostController {
     PostRepository postRepository;
     @Autowired
     AppRepository appRepository;
+    @Autowired
+    ReplyRepository replyRepository;
 
 
 
@@ -33,12 +37,31 @@ public class PostController {
 
             Post post = new Post(text);
             post.setCreatedAt(new Date());
-            post.setUserPosts(appUser);
+            post.setPostAuthor(appUser);
             postRepository.save(post);
 
 
 
         }
         return new RedirectView("/myProfile");
+    }
+
+    @PostMapping("/add-Reply")
+    public RedirectView addReply (Principal p, Model m, String reply, Long id) {
+        if(p != null){
+            String username = p.getName();
+            Post userPost = postRepository.getById(id);
+            m.addAttribute("Appuser",userPost);
+
+            Reply replyPost = new Reply(reply);
+            replyPost.setReplyDate(new Date());
+            replyPost.setPost(userPost);
+            replyRepository.save(replyPost);
+
+
+
+
+        }
+        return new RedirectView("/myfeed");
     }
 }

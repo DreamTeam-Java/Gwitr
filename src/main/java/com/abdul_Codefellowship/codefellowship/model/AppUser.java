@@ -5,7 +5,6 @@ import javax.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -13,19 +12,20 @@ import java.util.Set;
 @Entity
 public class AppUser implements UserDetails {
 
-    @Id@GeneratedValue(strategy = GenerationType.AUTO) private Long id;
+    @Id@GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
     @Column (unique = true)
 
-    private String username;
-    private  String password;
-    private String firstName;
-    private String lastName;
-    private String dateOfBirth;
-    private String bio;
+    String username;
+    String password;
+    String firstName;
+    String lastName;
+    String dateOfBirth;
+    String bio;
 
 
 
-    @OneToMany(mappedBy = "userPosts", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "postAuthor", cascade = CascadeType.ALL)
     @OrderBy("text")
     List<Post> postList;
 
@@ -129,11 +129,11 @@ public class AppUser implements UserDetails {
         this.bio = bio;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

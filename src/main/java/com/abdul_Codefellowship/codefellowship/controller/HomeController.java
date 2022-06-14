@@ -2,7 +2,10 @@ package com.abdul_Codefellowship.codefellowship.controller;
 
 import com.abdul_Codefellowship.codefellowship.model.AppUser;
 import com.abdul_Codefellowship.codefellowship.model.Post;
+import com.abdul_Codefellowship.codefellowship.model.Reply;
 import com.abdul_Codefellowship.codefellowship.repositories.AppRepository;
+import com.abdul_Codefellowship.codefellowship.repositories.PostRepository;
+import com.abdul_Codefellowship.codefellowship.repositories.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -14,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,10 @@ public class HomeController {
 
     @Autowired
     AppRepository appRepository;
+    @Autowired
+    PostRepository postRepository;
+    @Autowired
+    ReplyRepository replyRepository;
 
     // CUSTOM 404 exception!!
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
@@ -102,6 +108,9 @@ public class HomeController {
             AppUser appUser = appRepository.findByUsername(p.getName());
             m.addAttribute("applicationUser", appUser);
 
+
+
+
         }
         List<AppUser> allUsers = appRepository.findAll();
         m.addAttribute("allUsers", allUsers);
@@ -113,12 +122,22 @@ public class HomeController {
     public String getMyFeed(Principal p, Model m) {
         if (p != null) {
             AppUser appUser = appRepository.findByUsername(p.getName());
+
+//            Post post = postRepository.findById(appUser.getId()).orElseThrow(IllegalAccessError::new);
+
+//            List<Reply> replyList = post.getReplyList();
+//            m.addAttribute("replies", replyList);
+
             m.addAttribute("applicationUser", appUser);
             m.addAttribute("appUserId",appUser.getId());
             m.addAttribute("appUserName",appUser.getFirstName() + ' '+ appUser.getLastName());
             List<Post> followingPosts = new ArrayList<>();
             for (AppUser user : appUser.getFollowingSet()) {
-                followingPosts.addAll(user.getPostList());
+                List<Post> postList = user.getPostList();
+                for ( Post post : postList) {
+                    post.setReplyList(replyRepository.findAllByPost(post));
+                }
+                followingPosts.addAll(postList);
             }
             m.addAttribute("allUserPosts", followingPosts);
         }
