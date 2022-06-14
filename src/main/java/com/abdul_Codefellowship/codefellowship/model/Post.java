@@ -2,18 +2,23 @@ package com.abdul_Codefellowship.codefellowship.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Post {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO) private Long id;
-    private String text;
-    private Date createdAt;
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    long id;
+   String text;
+   Date createdAt;
 
 
 
     @ManyToOne
-    AppUser userPosts;
+    AppUser postAuthor;
+
+    @OneToMany (mappedBy = "post", cascade = CascadeType.ALL) @OrderBy("text")
+    public List<Reply> replyList;
 
 
     public Post() {
@@ -21,6 +26,14 @@ public class Post {
 
     public Post(String text) {
         this.text = text;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getText() {
@@ -31,10 +44,6 @@ public class Post {
         this.text = text;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -43,17 +52,19 @@ public class Post {
         this.createdAt = createdAt;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public AppUser getPostAuthor() {
+        return postAuthor;
     }
 
-    public AppUser getUserPosts() {
-        return userPosts;
+    public void setPostAuthor(AppUser postAuthor) {
+        this.postAuthor = postAuthor;
     }
 
-    public void setUserPosts(AppUser userPosts) {
-        this.userPosts = userPosts;
+    public List<Reply> getReplyList() {
+        return replyList;
     }
 
-
+    public void setReplyList(List<Reply> replyList) {
+        this.replyList = replyList;
+    }
 }
