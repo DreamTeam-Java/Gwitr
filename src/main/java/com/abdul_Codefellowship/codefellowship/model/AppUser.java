@@ -25,9 +25,12 @@ public class AppUser implements UserDetails {
 
 
 
-    @OneToMany(mappedBy = "postAuthor", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "postAuthor", cascade = CascadeType.REMOVE)
     @OrderBy("text")
     List<Post> postList;
+
+    @OneToMany (mappedBy = "post", cascade = CascadeType.REMOVE) @OrderBy("text")
+    public List<Reply> replyList;
 
 
     @ManyToMany(mappedBy = "followingSet")

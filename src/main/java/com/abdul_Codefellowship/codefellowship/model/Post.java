@@ -1,5 +1,7 @@
 package com.abdul_Codefellowship.codefellowship.model;
 
+import org.hibernate.annotations.OnDelete;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Post {
     @ManyToOne
     AppUser postAuthor;
 
-    @OneToMany (mappedBy = "post", cascade = CascadeType.ALL) @OrderBy("text")
+    @OneToMany (mappedBy = "post", cascade = CascadeType.REMOVE) @OrderBy("text")
     public List<Reply> replyList;
 
 
