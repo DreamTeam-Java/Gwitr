@@ -46,5 +46,12 @@
 
 <ul th:each="post : ${posts}">
     <li th:text="${post.text + ' '+ post.createdAt}"></li>
+    <li>
+        <form th:action="@{/deletePost/{id}(id=${post.id})}" method="post">
+            <input type="hidden" th:field="${post}">Delete</input>
+            <button type="submit" onClick="return confirm('sure?')"/>
+        </form>
+    </li>
 </ul>
+
 </html>

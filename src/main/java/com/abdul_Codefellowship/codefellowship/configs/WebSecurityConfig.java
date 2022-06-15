@@ -58,6 +58,7 @@ public class WebSecurityConfig extends  WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
+                // Got from stackoverflow  https://stackoverflow.com/questions/43773840/spring-security-delete-cookie-for-logout
                 .deleteCookies("auth_code", "JSESSIONID")
                 .invalidateHttpSession(true);
     }
