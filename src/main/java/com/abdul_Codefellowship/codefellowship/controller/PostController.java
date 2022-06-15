@@ -9,12 +9,15 @@ import com.abdul_Codefellowship.codefellowship.repositories.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -65,9 +68,12 @@ public class PostController {
         }
         return new RedirectView("/myfeed");
     }
-    @PostMapping("/deletePost/{id}")
+    @DeleteMapping ("/deletePost/{id}")
     public RedirectView deletePost(@PathVariable Long id){
-        postRepository.deleteById(id);
+        Post postDelete = postRepository.findById(id).orElseThrow(IllegalAccessError::new);
+
+        postRepository.delete(postDelete);
+
 
         return new RedirectView("/myProfile");
     }

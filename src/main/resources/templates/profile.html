@@ -11,25 +11,13 @@
 <img src="/img/default-profile.png"/>
 <img class="img-fluid" src="/img/gwiterlogo2.png" alt="Animated-image-sun">
 <ul>
-    <li th:text="${user.firstName + ' ' + user.lastName}"></li>
+<!--    <li th:text="${user.firstName + ' ' + user.lastName}"></li>-->
     <br>
     <li th:text="${user.dateOfBirth}"></li>
     <br>
     <li th:text="${user.bio}"></li>
 
 </ul>
-
-<div class="col-md-8 mx-auto">
-    <h2>Upload Resume</h2>
-    <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
-    <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
-        <div class="form-group">
-            <input type="file" name="file" class="form-control-file">
-        </div>
-        <button type="submit" class="btn btn-primary">Upload File</button>
-    </form>
-</div>
-
 
 <form action="/add-post" method="post">
     <fieldset>
@@ -49,18 +37,15 @@
     <li th:text="${post.text + ' '+ post.createdAt}"></li>
 </ul>
     <div>
-        <form th:action="@{/deletePost/{id}(id=${post.id})}" method="post">
-            <fieldset>
-            <input type="hidden" th:field="${post}">Delete</input>
 
-            <button type="submit" onClick="return confirm('sure?')"/>
+    <form th:action="@{'/deletePost/{id}'(id=${post.id})}"  th:method="DELETE">
+        <input type="submit" value="delete" onClick="return confirm('sure?')"></input>
 
-            </fieldset>
-        </form>
+    </form>
     </div>
 
 </div>
 
 
-
+</body>
 </html>

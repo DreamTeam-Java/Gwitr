@@ -94,6 +94,7 @@ public class HomeController {
 
         List<Post> postList = appUser.getPostList();
 
+
         m.addAttribute("post", postList);
         m.addAttribute("isFollowing", isFollowing);
 
