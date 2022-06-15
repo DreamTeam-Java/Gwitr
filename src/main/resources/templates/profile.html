@@ -44,14 +44,23 @@
 
 <h1>Posts</h1>
 
-<ul th:each="post : ${posts}">
+<div th:each="post : ${posts}">
+<ul>
     <li th:text="${post.text + ' '+ post.createdAt}"></li>
-    <li>
-        <form th:action="@{/deletePost/{id}(id=${post.id})}" method="post">
-            <input type="hidden" th:field="${post}">Delete</input>
-            <button type="submit" onClick="return confirm('sure?')"/>
-        </form>
-    </li>
 </ul>
+    <div>
+        <form th:action="@{/deletePost/{id}(id=${post.id})}" method="post">
+            <fieldset>
+            <input type="hidden" th:field="${post}">Delete</input>
+
+            <button type="submit" onClick="return confirm('sure?')"/>
+
+            </fieldset>
+        </form>
+    </div>
+
+</div>
+
+
 
 </html>
