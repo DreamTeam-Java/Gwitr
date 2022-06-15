@@ -9,7 +9,7 @@ import com.abdul_Codefellowship.codefellowship.repositories.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -63,5 +63,14 @@ public class PostController {
 
         }
         return new RedirectView("/myfeed");
+    }
+
+    @DeleteMapping  ("/deletePost")
+    public RedirectView deletePost(Long id){
+
+        postRepository.deleteById(id);
+
+
+        return new RedirectView("/myProfile");
     }
 }
