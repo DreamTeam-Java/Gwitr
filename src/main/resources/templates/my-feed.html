@@ -37,7 +37,7 @@
         <div class="postcontent-container">
             <p th:text="${post.text}"></p>
         </div>
-<!--        <p th:text="${post.replyList.get(0).reply}"></p>-->
+
         <div th:if="${post.getReplyList() != null}"th:each="reply : ${post.getReplyList()}">
             <p th:text=" ${reply.reply}"></p>
             <p th:text=" ${reply.replyDate}"></p>
