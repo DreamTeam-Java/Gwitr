@@ -8,50 +8,112 @@
     <title>Sign-up</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!--    custom css stuff-->
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
 </head>
 <body>
-<div th:replace="/fragments/nav-header"/>
-<h1>Sign Up!</h1>
-<form action="/signup" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username">
 
-    <br>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-    </br>
 
-    <br>
-    <label for="firstName">FirstName</label>
-    <input type="text" name="firstName" id="firstName">
-    </br>
+<main  style="margin: 2%">
 
-    <br>
-    <label for="lastName">LastName</label>
-    <input type="text" name="lastName" id="lastName">
-    </br>
 
-    <br>
-    <label for="dateOfBirth">Date Of Birth</label>
-    <input type="text" name="dateOfBirth" id="dateOfBirth">
-    </br>
+    <div class="cool-image-login text-center"  >
+        <a  id="hero-logo" href="/" >
+            <figure>
 
-    <br>
-    <label for="bio">Bio</label>
-    <input type="text" name="bio" id="bio">
-    </br>
+                <img class="img-fluid" src="/img/gwiterlogo750x400.png" alt="Animated-image-sun">
+                <figcaption class="figure-caption-link">
 
-    <input type="submit" value="Sign Up">
-</form>
+                    <a id="already-user" href="/login">
+                        <h1 id="already-member">Already a member?</h1>
+                    </a>
+                </figcaption>
+            </figure>
+        </a>
+        <!--    <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a>-->
+    </div>
+
+
+
+    <div alt="results-story" style="display: flex; flex-direction: row; justify-content: space-between">
+        <blockquote class="blockquote text-center">
+            <p class="mb-0"  style="margin-top: 30%">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        </blockquote>
+<!--        <img src="/img/Iphone-placeholder.jpg" class="img-fluid" alt="Responisve image"/>-->
+        <img class="img-fluid" alt="embed-video" src="https://p16-va-tiktok.ibyteimg.com/obj/musically-maliva-obj/b34f51867616fb596f9e8b756e95e93e"/>
+    </div>
+
+
+    <div class="section-video text-center" >
+        <div style="display: flex;  flex-direction: row; justify-content: center " alt="inclusivity-title-flag">
+            <p  alt="inclusivity-title-text">Love is thrilling</p>
+            <img src="/img/inclusivityflag.gif" style="width: 2%; height: auto" alt="rainbow-flag">
+        </div>
+
+        <figure>
+            <img class="img-fluid" alt="embed-video" src="https://ci3.googleusercontent.com/proxy/BtUdJTQM8ul5Bs2idQMy-boG_494ygZnuILv5HMHSjvW5C57v_eGfELviFq3_ytYjVEoQt5Q6aSq4iexPSYQf8hJu5hVZ00diGgsRAplUfD795MeSXTBeAoMMBpD8aPZytYa3CX-ippDREKDq2yHneJI9wMCk0gGTDgw=s0-d-e1-ft#https://image.email.sixflags.com/lib/fe2e11717164057e771d78/m/2/793c68bf-ff22-4c5d-bb73-c786674ad5c0.jpg"/>
+            <figcaption class="figure-caption-button">
+
+                <a class="btn btn-primary btn-lg" id="signup-button" href="#newuser" role="button" style="margin-top: 1px">
+                    Signup</a>
+            </figcaption>
+
+        </figure>
+
+    </div>
+
+</main>
+
+
+<div class="text-center" style="margin: 2%">
+
+    <img class="img-fluid"  src="/img/large-hero1.jpg"></img>
+</div>
+<section id="newuser" class="text-center"  style="margin: 2%; display: flex; justify-content: center" >
+
+    <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+        <h1>Sign Up!</h1>
+        <div class="card-body">
+
+            <form action="/signup" method="POST">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="User Name">
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Password">
+
+                <label for="firstName">First Name</label>
+                <input type="text" name="firstName" id="firstName" placeholder="First Name">
+
+                <label for="lastName">Last Name</label>
+                <input type="text" name="lastName" id="lastName" placeholder="last name">
+
+                <label for="dateOfBirth">Date Of Birth</label>
+                <input type="text" name="dateOfBirth" id="dateOfBirth" placeholder="mm/dd/yyyy">
+
+                <label for="bio">Biography</label>
+                <input type="text" name="bio" id="bio" placeholder="bio">
+
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<!--    Font Awesome-->
+<script src="https://kit.fontawesome.com/7a5f3d2bb1.js" crossorigin="anonymous"></script>
 <!-- Optional JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
+<footer th:replace="fragments/footer :: footer"></footer>
 </body>
 </html>
