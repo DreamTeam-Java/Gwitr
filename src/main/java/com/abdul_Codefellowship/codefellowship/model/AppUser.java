@@ -26,7 +26,6 @@ public class AppUser implements UserDetails {
 
 
     @OneToMany(mappedBy = "postAuthor", cascade = CascadeType.ALL)
-    @OrderBy("text")
     List<Post> postList;
 
 

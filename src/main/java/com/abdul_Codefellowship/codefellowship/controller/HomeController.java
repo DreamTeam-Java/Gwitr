@@ -52,7 +52,7 @@ public class HomeController {
         //News stuff
 
         //News stuff
-        m.addAttribute("newsResults", sut);
+//        m.addAttribute("newsResults", sut);
         //News stuff
 
         if (p != null) {
@@ -106,7 +106,7 @@ public class HomeController {
 
         m.addAttribute("appUsername",appUser.getUsername());
         m.addAttribute("appUserId",appUser.getId());
-        m.addAttribute("user",appUser.getFirstName() + ' '+ appUser.getLastName()+ ' '+appUser.getBio());
+        m.addAttribute("user",appUser);
 
         List<Post> postList = appUser.getPostList();
 

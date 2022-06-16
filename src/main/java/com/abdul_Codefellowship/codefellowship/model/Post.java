@@ -17,7 +17,7 @@ public class Post {
     @ManyToOne
     AppUser postAuthor;
 
-    @OneToMany (mappedBy = "post", cascade = CascadeType.ALL) @OrderBy("text")
+    @OneToMany (mappedBy = "post", cascade = CascadeType.ALL)
     public List<Reply> replyList;
 
 

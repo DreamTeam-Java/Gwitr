@@ -34,7 +34,10 @@ public class AppController  {
         return "signup";
     }
 
-
+    @GetMapping("/aboutus")
+    public String aboutUsPage(){
+        return "aboutus.html";
+    }
     @PostMapping("/logout")
     public RedirectView logoutUser(Principal p) {
         if (p != null) {
