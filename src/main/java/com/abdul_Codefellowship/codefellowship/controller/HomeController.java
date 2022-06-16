@@ -52,7 +52,7 @@ public class HomeController {
         //News stuff
 
         //News stuff
-        m.addAttribute("newsResults", sut);
+//        m.addAttribute("newsResults", sut);
         //News stuff
 
         if (p != null) {

@@ -16,19 +16,27 @@
 <h2>User Info</h2>
 
 <div>
+
     <form id="follow-button" th:if="${isFollowing == false && username != appUsername && appUser != null}" th:action="${'/follow/' + appUserId}" th:method="PUT">
+
 
         <input class="button" type="submit" th:value="${'Follow ' + appUsername} " th:d="${isFollowing == true}">
     </form>
     <li id="following-text" th:if="${isFollowing == true}"
         th:text="${ 'Following ' + appUsername}"></li>
 </div>
-<h2>Name</h2>
-<p th:text="${user.firstName +' '+ user.lastName}"></p>
-<h2>Date Of Birth</h2>
-<p th:text="${user.dateOfBirth}"></p>
-<h2>Bio</h2>
-<p th:text="${user.bio}"></p>
+
+
+<div id="User-Profile-container">
+    <h2>Name</h2>
+    <p th:text="${user.firstName +' '+ user.lastName}"></p>
+    <h2>Date Of Birth</h2>
+    <p th:text="${user.dateOfBirth}"></p>
+    <h2>Bio</h2>
+    <p th:text="${user.bio}"></p>
+</div>
+
+
 
 <h2>User Posts</h2>
 

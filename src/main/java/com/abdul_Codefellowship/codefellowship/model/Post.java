@@ -19,7 +19,9 @@ public class Post {
     @ManyToOne
     AppUser postAuthor;
 
+
     @OneToMany (mappedBy = "post", cascade = CascadeType.REMOVE)
+
     public List<Reply> replyList;
 
 
