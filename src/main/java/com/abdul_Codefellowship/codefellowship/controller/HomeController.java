@@ -47,9 +47,13 @@ public class HomeController {
         //News stuff
         NewsWriter nW = new NewsWriter();
         News x = nW.newsReport();
+        List<News.Result> sut = x.getResults();
 
         //News stuff
 
+        //News stuff
+        m.addAttribute("newsResults", sut);
+        //News stuff
 
         if (p != null) {
             String username = p.getName();
@@ -57,9 +61,6 @@ public class HomeController {
 
             m.addAttribute("username", username);
             
-            //News stuff
-            m.addAttribute("newsResults", x.getResults());
-            //News stuff
         }
 
 //        throw a 404 error,

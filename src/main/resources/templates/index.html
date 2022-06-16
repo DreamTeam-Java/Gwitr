@@ -42,10 +42,10 @@
             <h1>World News</h1>
 
 <!--            <div class="" th:each="newsResult : ${newsResults}" th:id="" >-->
-            <ul class="" th:each="newsResult : ${newsResults}" th:id="" >
+            <ul class="" th:each="news : ${newsResults}" th:id="" >
 <!--               <img class="img-fluid" th:src="${newsResult.getPictureSmall()}"/>-->
 
-                <li th:text="${newsResult.title}"></li>
+                <li th:text="${news.title}"></li>
 
             </ul>
             <div>
