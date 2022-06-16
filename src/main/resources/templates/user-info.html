@@ -9,14 +9,16 @@
 <body>
 <div th:replace="/fragments/nav-header"/>
 
-<h1 th:text="${' User info for user : ' + appUserId}"></h1>
+
 <img src="/img/default-profile.png"/>
 <p th:text="${appUsername}">Username</p>
 
 <h2>User Info</h2>
 
 <div>
-    <form id="follow-button" th:if="${isFollowing == false && username != appUsername && appUser != null }" th:action="${'/follow/' + appUserId}" th:method="PUT">
+
+    <form id="follow-button" th:if="${isFollowing == false && username != appUsername && appUser != null}" th:action="${'/follow/' + appUserId}" th:method="PUT">
+
 
         <input class="button" type="submit" th:value="${'Follow ' + appUsername} " th:d="${isFollowing == true}">
     </form>
@@ -24,7 +26,8 @@
         th:text="${ 'Following ' + appUsername}"></li>
 </div>
 
-<div id="Profile-container">
+
+<div id="User-Profile-container">
     <h2>Name</h2>
     <p th:text="${user.firstName +' '+ user.lastName}"></p>
     <h2>Date Of Birth</h2>
@@ -32,6 +35,7 @@
     <h2>Bio</h2>
     <p th:text="${user.bio}"></p>
 </div>
+
 
 
 <h2>User Posts</h2>

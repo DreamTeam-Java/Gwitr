@@ -77,6 +77,12 @@ public class AppController  {
     }
 
 
+    @GetMapping("/aboutus")
+    public String aboutUsPage(){
+        return "aboutus.html";
+    }
+
+
 
 }
 

@@ -1,5 +1,8 @@
 package com.abdul_Codefellowship.codefellowship.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -11,8 +14,11 @@ public class Reply {
      String reply;
    Date replyDate;
 
-    @ManyToOne
+    @ManyToOne @OnDelete( action = OnDeleteAction.CASCADE)
     Post post;
+
+    @ManyToOne @OnDelete( action = OnDeleteAction.CASCADE)
+    public AppUser postAuthor;
 
     public Reply() {
     }
@@ -52,5 +58,13 @@ public class Reply {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    public AppUser getPostAuthor() {
+        return postAuthor;
+    }
+
+    public void setPostAuthor(AppUser postAuthor) {
+        this.postAuthor = postAuthor;
     }
 }
