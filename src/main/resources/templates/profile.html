@@ -11,14 +11,15 @@
 
     <img src="/img/default-profile.png"/>
     <img src="/img/gwiterlogo2.png" alt="Animated-image-sun">
-    <ul>
-        <li th:text="${user.firstName + ' ' + user.lastName}"></li>
-        <br>
-        <li th:text="${user.dateOfBirth}"></li>
-        <br>
-        <li th:text="${user.bio}"></li>
+    <div id="Profile-container">
+    <h2>Name</h2>
+    <p th:text="${user.firstName +' '+ user.lastName}"></p>
+    <h2>Date Of Birth</h2>
+    <p th:text="${user.dateOfBirth}"></p>
+    <h2>Bio</h2>
+    <p th:text="${user.bio}"></p>
 
-    </ul>
+    </div>
 
 
     <form action="/add-post" method="post">
