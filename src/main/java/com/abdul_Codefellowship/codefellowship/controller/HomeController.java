@@ -47,6 +47,7 @@ public class HomeController {
         //News stuff
         NewsWriter nW = new NewsWriter();
         News x = nW.newsReport();
+
         //News stuff
 
 
@@ -57,7 +58,7 @@ public class HomeController {
             m.addAttribute("username", username);
             
             //News stuff
-            m.addAttribute("newsReports", x);
+            m.addAttribute("newsResults", x.getResults());
             //News stuff
         }
 
