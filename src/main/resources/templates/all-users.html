@@ -17,22 +17,55 @@
     <div th:replace="/fragments/nav-header"/>
 </header>
 
-<main>
-    <div id="all-users-container">
-        <ul th:if="${allUsers != null}">
-            <div th:each="user : ${allUsers}">
-                <a th:href="${'/user/' + user.id}">
-                    <li class="all-user-row">
-                        <p th:text="${user.firstName}"></p>
-                        <p th:text="${user.lastName}"></p>
-                        <p th:text="${user.username}"></p>
-                    </li>
-                </a>
+<!--    <div id="all-users-container">-->
+<!--        <ul th:if="${allUsers != null}">-->
+<!--            <div th:each="user : ${allUsers}">-->
+<!--                <a th:href="${'/user/' + user.id}">-->
+<!--                    <li class="all-user-row">-->
+<!--                        <p th:text="${user.firstName}"></p>-->
+<!--                        <p th:text="${user.lastName}"></p>-->
+<!--                        <p th:text="${user.username}"></p>-->
+<!--                    </li>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </ul>-->
+<!--        <h2 th:else="${'No Posts'}"></h2>-->
+<!--    </div>-->
+
+<main th:if="${allUsers != null}">
+
+
+
+
+    <div class="accordion" id="accordion-all-user" th:each="user : ${allUsers}">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne" >
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+                    <h5 th:text="${'Username: ' + user.username}"></h5>
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+
+                    <div th:each="post : ${user.postList}">
+
+                    <strong>Your Gwitr Friends Post: </strong>
+                    <p th:text="${post.text}"></p>
+                    </div>
+                </div>
             </div>
-        </ul>
-        <h2 th:else="${'No Posts'}"></h2>
+        </div>
+
+
     </div>
+
+
+    </div>
+
+
 </main>
+<h2 th:else="${'No Posts'}"></h2>
 <!--    Font Awesome-->
 <script src="https://kit.fontawesome.com/7a5f3d2bb1.js" crossorigin="anonymous"></script>
 <!-- Optional JavaScript -->

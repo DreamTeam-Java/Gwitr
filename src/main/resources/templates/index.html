@@ -41,23 +41,20 @@
         <div class="card-body" style="height: auto" id="news">
             <h1>World News</h1>
 
-            <div class="" th:each="newsResult : ${newsResults}"  >
-            <ul class="" th:each="news : ${newsResult}"  >
-<!--               <img class="img-fluid" th:src="${news.getPictureSmall()}"/>-->
+            <div class="shadow p-3 mb-5 bg-body rounded"  th:each="news : ${newsResults}"  >
 
-                <li th:text="${news.title}"></li>
-                <li></li>
+                <h2 class="card-title" th:text="${news.title}"></h2>
+                <figure>
+                <img class="img-fluid" th:src="${news.getPictureMedium()}"/>
 
+                    <figcaption>
 
-            </ul>
-            <div>
-<!--            <img class="img-fluid" src="/img/large-hero1.jpg">-->
-<!--            <h5 class="card-title">News Title</h5>-->
-<!--            <p class="card-text">-->
-<!--                News article-->
-<!--            </p>-->
+                        <p class="card-text" th:text="${news.abst}"></p>
+                        <a th:href="${news.url}" >More ...</a>
+                    </figcaption>
+                </figure>
+
             </div>
-
 
         </div>
 

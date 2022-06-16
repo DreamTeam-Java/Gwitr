@@ -1,5 +1,7 @@
 package com.abdul_Codefellowship.codefellowship.nytimes;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +21,9 @@ public class Result{
     public String short_url;
     public String title;
 //    public String abstract;
+    @SerializedName("abstract")
+    public String abst;
+
     public String url;
 
     public String getUpdated_date() {
@@ -38,7 +43,10 @@ public class Result{
     }
 
     public String getPictureSmall(){
-        return multimedia.get(multimedia.size()).getUrl();
+        return multimedia.get(multimedia.size() -1).getUrl();
+    }
+    public String getPictureMedium(){
+        return multimedia.get(multimedia.size() -2).getUrl();
     }
 
     public String getShort_url() {

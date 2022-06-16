@@ -90,6 +90,7 @@ public class HomeController {
     }
 
 
+
     @GetMapping("/user/{id}")
     public String userInfo(Principal p, Model m, @PathVariable Long id) {
 
@@ -122,9 +123,10 @@ public class HomeController {
     public String getAllUsersPage(Principal p, Model m) {
         if (p != null) {
             AppUser appUser = appRepository.findByUsername(p.getName());
+            List<Post> postList = appUser.getPostList();
             m.addAttribute("applicationUser", appUser);
-
-
+//            m.addAttribute("posts",postList);
+//            userProfile(p, m);
 
 
         }
