@@ -26,10 +26,10 @@ public class AppUser implements UserDetails {
 
 
     @OneToMany(mappedBy = "postAuthor", cascade = CascadeType.REMOVE)
-    @OrderBy("text")
+
     List<Post> postList;
 
-    @OneToMany (mappedBy = "post", cascade = CascadeType.REMOVE) @OrderBy("text")
+    @OneToMany (mappedBy = "post", cascade = CascadeType.REMOVE)
     public List<Reply> replyList;
 
 
