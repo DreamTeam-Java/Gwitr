@@ -41,11 +41,13 @@
         <div class="card-body" style="height: auto" id="news">
             <h1>World News</h1>
 
-<!--            <div class="" th:each="newsResult : ${newsResults}" th:id="" >-->
-            <ul class="" th:each="news : ${newsResults}" th:id="" >
-<!--               <img class="img-fluid" th:src="${newsResult.getPictureSmall()}"/>-->
+            <div class="" th:each="newsResult : ${newsResults}"  >
+            <ul class="" th:each="news : ${newsResult}"  >
+<!--               <img class="img-fluid" th:src="${news.getPictureSmall()}"/>-->
 
                 <li th:text="${news.title}"></li>
+                <li></li>
+
 
             </ul>
             <div>
