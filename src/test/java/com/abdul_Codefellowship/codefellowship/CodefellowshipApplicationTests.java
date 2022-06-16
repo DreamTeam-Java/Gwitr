@@ -1,8 +1,13 @@
 package com.abdul_Codefellowship.codefellowship;
 
+
+import com.abdul_Codefellowship.codefellowship.nytimes.News;
+import com.abdul_Codefellowship.codefellowship.nytimes.NewsWriter;
+
 import com.abdul_Codefellowship.codefellowship.controller.*;
 
 import com.abdul_Codefellowship.codefellowship.model.*;
+
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
 
+
+import java.io.IOException;
+
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -20,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest
 @AutoConfigureMockMvc
+
 class CodefellowshipApplicationTests {
 	@Autowired
 	MockMvc mockMvc;
@@ -60,6 +70,14 @@ class CodefellowshipApplicationTests {
 	}
 
 	@Test
+
+	public void testNews() throws IOException {
+		NewsWriter sut = new NewsWriter();
+		News x = sut.newsReport();
+		return;
+	}
+
+
 	void ReplyModel_Test()
 	{
 		Reply sut = new Reply("Test");
@@ -92,6 +110,7 @@ class CodefellowshipApplicationTests {
 				.andExpect(content().string(containsString("<h1>Sign Up!</h1>")))
 				.andExpect(status().isOk());
 	}
+
 
 
 
