@@ -3,6 +3,8 @@ package com.abdul_Codefellowship.codefellowship.controller;
 import com.abdul_Codefellowship.codefellowship.model.AppUser;
 import com.abdul_Codefellowship.codefellowship.model.Post;
 import com.abdul_Codefellowship.codefellowship.model.Reply;
+import com.abdul_Codefellowship.codefellowship.nytimes.News;
+import com.abdul_Codefellowship.codefellowship.nytimes.NewsWriter;
 import com.abdul_Codefellowship.codefellowship.repositories.AppRepository;
 import com.abdul_Codefellowship.codefellowship.repositories.PostRepository;
 import com.abdul_Codefellowship.codefellowship.repositories.ReplyRepository;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,19 +42,30 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String getHomePage(Principal p, Model m) {
+    public String getHomePage(Principal p, Model m) throws IOException {
+
+        //News stuff
+        NewsWriter nW = new NewsWriter();
+        News x = nW.newsReport();
+        //News stuff
+
 
         if (p != null) {
             String username = p.getName();
             AppUser appUser = appRepository.findByUsername(username);
 
             m.addAttribute("username", username);
+            
+            //News stuff
+            m.addAttribute("newsReports", x);
+            //News stuff
         }
 
 //        throw a 404 error,
         return "index";
 
     }
+
 
     @GetMapping("/myProfile")
     public String userProfile(Principal p, Model m) {
@@ -158,6 +172,7 @@ public class HomeController {
         }
         return new RedirectView("/user/" + id);
     }
+
 
 }
 
