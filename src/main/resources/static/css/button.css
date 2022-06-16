@@ -15,7 +15,7 @@
   margin-bottom: 10px;
 }
 
-.btn:before {
+.btn:after {
   content: '';
   background: linear-gradient(45deg, #9c0739, #ca20ca, #d6ccfb,  #b9fbd4, #c3eb15, #f49f90, #8EECF5, #fdfdfd, #000000);
   position: absolute;
@@ -38,14 +38,14 @@
   color: #000;
 }
 
-.btn:active:after{
+.btn:active:before{
   background: transparent;
 }
-.btn:hover:before{
+.btn:hover:after{
   opacity: 1;
 }
 
-.btn:after{
+.btn:before{
   z-index: -1;
   content: '';
   position: absolute;
