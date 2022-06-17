@@ -10,7 +10,14 @@
 <div th:replace="/fragments/nav-header"/>
 
 
-<img src="/img/default-profile.png"/>
+
+<div class="card shadow p-3 mt-5 mb-5 bg-white rounded" style="min-width: 18rem; margin-left: 30%; margin-right: 30%;">
+    <img class="img-fluid " src="/img/gwiterlogo210x2102.png" style="max-width: 300px; margin-left: 30%; margin-right: 30%" alt="Animated-image-sun">
+
+
+    <div class="card-body" >
+
+<img class="shadow img-fluid rounded" src="/img/default-profile.png"/>
 <p th:text="${appUsername}">Username</p>
 
 <h2>User Info</h2>
@@ -39,6 +46,9 @@
 
 
 <h2>User Posts</h2>
+
+    </div>
+</div>
 
 <ul th:each="posts : ${post}">
     <li th:text="${'Post: '+ posts.text + ' Date: '+ posts.createdAt}"></li>
