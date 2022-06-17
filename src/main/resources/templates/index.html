@@ -12,62 +12,77 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
 </head>
-<body>
+<body >
 <div th:replace="/fragments/nav-header"/>
 
 
 
 
-<main style="margin: 2%">
-
-
-    <div class="card text-center">
-        <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="true" href="#news">World News</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#crypto">Crypto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
-        </div>
-
-
-        <div class="card-body" style="height: auto" id="news">
-            <h1>World News</h1>
-
-            <div class="shadow p-3 mb-5 bg-body rounded"  th:each="news : ${newsResults}"  >
-
-                <h2 class="card-title" th:text="${news.title}"></h2>
-                <figure>
-                <img class="img-fluid" th:src="${news.getPictureMedium()}"/>
-
-                    <figcaption>
-
-                        <p class="card-text" th:text="${news.abst}"></p>
-                        <a th:href="${news.url}" >More ...</a>
-                    </figcaption>
-                </figure>
-
-            </div>
-
-        </div>
+<main style="margin: 2%"  >
 
 
 
-        <div class="card-body" style="height: auto" id="crypto">
-            <h1>Crypto News!</h1>
-            <img class="img-fluid" src="/img/large-hero1.jpg">
-            <h5 class="card-title">News Title</h5>
-            <p class="card-text">
-                News article
-            </p>
-        </div>
+
+
+<div class="container" style="max-width: 720px;">
+
+
+    <div id="carouselExampleInterval" class="carousel slide text-center" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10">
+                        <img src="/img/gwiterlogo1500x800.png" class="img-fluid" alt="welcome">
+                        <h1>News Feed!</h1>
+                    </div>
+
+                    <div class="carousel-item" th:each="news : ${newsResults}"  >
+<!--                        <img src="..." class="d-block w-100" alt="...">-->
+                        <h2 class="card-title" th:text="${news.title}"></h2>
+                        <figure>
+                            <img class="img-fluid" th:src="${news.getPictureMedium()}"/>
+
+                            <figcaption>
+
+                                <p class="card-text" th:text="${news.abst}"></p>
+                                <a th:href="${news.url}" >More ...</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        <div class="card-body" style="height: auto" id="crypto">-->
+<!--            <h1>Crypto News!</h1>-->
+<!--            <img class="img-fluid" src="/img/large-hero1.jpg">-->
+<!--            <h5 class="card-title">News Title</h5>-->
+<!--            <p class="card-text">-->
+<!--                News article-->
+<!--            </p>-->
+<!--        </div>-->
     </div>
 
 
@@ -92,8 +107,80 @@
 </button>
 
 
+<div  th:switch="${isSignedin}">
+    <div th:case="${true}">
 
-<footer th:replace="fragments/footer :: footer"></footer>
+
+
+
+
+
+        <h1 style="margin: 3%">Check Friends Feed! </h1>
+        <article class="feed" th:each="post : ${allUserPosts}">
+
+            <div>
+                <a class="profile" th:href="${'/user/' + appUserId}"
+                   th:text="${appUserName}"></a>
+            </div>
+
+
+            <br>
+
+            <blockquote class="post-box">
+                <div class="post-box">
+                    <p class="text" th:text="${post.text}"></p>
+                    <p class="date" th:text="${post.createdAt}">Date:</p>
+                </div>
+            </blockquote>
+            <h2>Reply's</h2>
+
+            <br>
+
+            <blockquote class="reply-box">
+                <div th:if="${post.replyList != null}" th:each="reply : ${post.getReplyList()}">
+                    <p class="text" th:if="${reply != null}" th:text=" ${reply.reply}"></p>
+                    <br>
+                    <p class="date" th:if="${reply != null}" th:text=" ${reply.replyDate}">Date:</p>
+                </div>
+            </blockquote>
+
+            <blockquote class="reply-form">
+                <div class="reply-container">
+                    <form action="/add-Reply" method="post">
+                        <fieldset>
+                            <legend></legend>
+                            <label for="reply">Reply</label>
+                            <input type="text" name="reply" id="reply">
+                            <input type="hidden" name="id" th:value="${post.id}">
+
+                            <input type="submit" value="Submit Post">
+                        </fieldset>
+                    </form>
+                </div>
+            </blockquote>
+        </article>
+
+
+
+
+
+
+
+
+        <footer  th:replace="fragments/footer-minimal :: footer"></footer>
+    </div>
+    <div th:case="${false}">
+        <h1 style="margin: 3%">Please sign in to Check Gwiter feed!</h1>
+       <footer th:replace="fragments/footer-signup"></footer>
+</div>
+</div>
+
+
+
+
+
+
+
 
 <!--    Font Awesome-->
 <script src="https://kit.fontawesome.com/7a5f3d2bb1.js" crossorigin="anonymous"></script>

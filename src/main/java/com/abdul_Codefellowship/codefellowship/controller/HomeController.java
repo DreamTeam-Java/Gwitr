@@ -52,7 +52,9 @@ public class HomeController {
         //News stuff
 
         //News stuff
+        boolean isSigned = p != null;
         m.addAttribute("newsResults", sut);
+        m.addAttribute("isSignedin", isSigned);
         //News stuff
 
         if (p != null) {
@@ -60,7 +62,18 @@ public class HomeController {
             AppUser appUser = appRepository.findByUsername(username);
 
             m.addAttribute("username", username);
-            
+            m.addAttribute("applicationUser", appUser);
+            m.addAttribute("appUserId",appUser.getId());
+            m.addAttribute("appUserName",appUser.getFirstName() + ' '+ appUser.getLastName());
+            List<Post> followingPosts = new ArrayList<>();
+            for (AppUser user : appUser.getFollowingSet()) {
+                List<Post> postList = user.getPostList();
+                for ( Post post : postList) {
+                    post.setReplyList(replyRepository.findAllByPost(post));
+                }
+                followingPosts.addAll(postList);
+            }
+            m.addAttribute("allUserPosts", followingPosts);
         }
 
 //        throw a 404 error,
