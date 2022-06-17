@@ -40,19 +40,19 @@
     <div class="accordion" id="accordion-all-user" th:each="user : ${allUsers}">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne" >
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="accordion-button" type="button"   data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <img src="/img/default-profile.png"/>
-
-                    <h5 th:text="${'Username: ' + user.username}"></h5>
+                    <h5 th:text="${'Username: ' + user.username}"  <a th:href="${'/user/' + user.id}"></a>> </h5>
                 </button>
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
 
-                    <div th:each="post : ${user.postList}">
+                    <a th:href="${'/user/' + user.id}">
+<!--                    <div th:each="post : ${user.postList}">-->
 
-                    <strong>Your Gwitr Friends Post: </strong>
-                    <p th:text="${post.text}"></p>
+                    <strong>Bio: </strong>
+                    <p th:text="${user.bio}"></p>
                     </div>
                 </div>
             </div>
