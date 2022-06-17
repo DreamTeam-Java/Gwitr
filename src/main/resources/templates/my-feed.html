@@ -29,8 +29,8 @@
     <article class="feed" th:each="post : ${allUserPosts}">
 
         <div>
-            <a class="profile" th:href="${'/user/' + appUserId}"
-               th:text="${appUserName}"></a>
+            <a class="profile" th:href="${'/user/' + post.postAuthor.id}"
+               th:text="${post.postAuthor.username}"></a>
         </div>
 
 
@@ -42,15 +42,16 @@
                 <p class="date" th:text="${post.createdAt}">Date:</p>
             </div>
         </blockquote>
+
         <h2>Reply's</h2>
 
         <br>
 
         <blockquote class="reply-box">
-            <div th:if="${post.replyList != null}" th:each="reply : ${post.getReplyList()}">
-                <p class="text" th:if="${reply != null}" th:text=" ${reply.reply}"></p>
+            <div th:if="${post.replyList != null}" th:each="reply : ${post.replyList}">
+                <p class="text" th:text=" ${reply.reply}"></p>
                 <br>
-                <p class="date" th:if="${reply != null}" th:text=" ${reply.replyDate}">Date:</p>
+                <p class="date" th:text=" ${reply.replyDate}">Date:</p>
             </div>
         </blockquote>
 
@@ -63,7 +64,7 @@
                         <input type="text" name="reply" id="reply">
                         <input type="hidden" name="id" th:value="${post.id}">
 
-                        <input type="submit" value="Submit Post">
+                        <input class="btn" type="submit" value="Submit Post">
                     </fieldset>
                 </form>
             </div>

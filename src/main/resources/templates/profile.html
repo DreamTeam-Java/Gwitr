@@ -40,7 +40,7 @@
             <label for="text">Text</label>
             <input type="text" name="text" id="text" >
 
-            <input type="submit" value="Submit Post">
+            <input class="btn" type="submit" value="Submit Post">
         </fieldset>
     </form>
 
@@ -53,7 +53,7 @@
     </ul>
     <form action="/deletePost"  th:method="delete">
         <input type="hidden" name="id" th:value="${post.id}">
-        <input type="submit" value="delete" onClick="return confirm('Are you sure you want to delete post?')"></input>
+        <input class="rain" type="submit" value="delete" onClick="return confirm('Are you sure you want to delete post?')"></input>
 
     </form>
 

@@ -17,12 +17,12 @@
 
 <div>
 
-    <form id="follow-button" th:if="${isFollowing == false && username != appUsername && appUser != null}" th:action="${'/follow/' + appUserId}" th:method="PUT">
+    <form class="rainbow" th:if="${isFollowing == false &&  appUser != null}" th:action="${'/follow/' + appUserId}" th:method="PUT">
 
 
-        <input class="button" type="submit" th:value="${'Follow ' + appUsername} " th:d="${isFollowing == true}">
+        <input class="btn" type="submit" th:value="${'Follow ' + appUsername} " th:d="${isFollowing == true}">
     </form>
-    <li id="following-text" th:if="${isFollowing == true}"
+    <li class="btn" th:if="${isFollowing == true}"
         th:text="${ 'Following ' + appUsername}"></li>
 </div>
 
