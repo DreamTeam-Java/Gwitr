@@ -16,7 +16,10 @@
 
 ****
 ### Flow of Program
-- ![](src/main/resources/static/img/Flow1.jpg)
+
+- Front end Flow ![](src/main/resources/static/img/Flow1.jpg)
+- WebPage design ![](src/main/resources/static/img/Flow2.jpg)
+- BackEnd Flow ![](src/main/resources/static/img/Flow3.jpg)
 ****
 
 ### Links and Resources
