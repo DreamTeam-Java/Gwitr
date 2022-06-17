@@ -96,14 +96,13 @@ public class HomeController {
 
         if (p != null) { // not strictly required if your WebSecuityConfig is correct
             String username = p.getName();
-            AppUser appUser = appRepository.findByUsername(username);
+            AppUser loginUser = appRepository.findByUsername(username);
 
             m.addAttribute("username", username);
-            m.addAttribute("appUser",appUser);
-        }
+            m.addAttribute("appUser",loginUser);
 
         AppUser appUser = appRepository.findById(id).orElseThrow(IllegalAccessError::new);
-        boolean isFollowing = appUser.getFollowingSet().contains(appUser);
+        boolean isFollowing = loginUser.getFollowingSet().contains(appUser);
 
         m.addAttribute("appUsername",appUser.getUsername());
         m.addAttribute("appUserId",appUser.getId());
@@ -114,6 +113,7 @@ public class HomeController {
         m.addAttribute("post", postList);
         m.addAttribute("isFollowing", isFollowing);
 
+        }
 
         return "user-info";
     }
