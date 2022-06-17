@@ -184,6 +184,8 @@ public class HomeController {
             if (appUser != null && publicUser != null) {
                 m.addAttribute("applicationUser", appUser);
                 appUser.getFollowingSet().add(publicUser);
+                publicUser.getFollowingSet().add(publicUser);
+                appUser.getFollowingSet().add(appUser);
                 appRepository.save(appUser);
             }
         }

@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="css/header.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/button.css">
+    <link rel="stylesheet" type="text/css" href="css/button3.css">
+    <link rel="stylesheet" href="/css/feed.css">
 </head>
 <body >
 <div th:replace="/fragments/nav-header"/>
@@ -26,7 +28,7 @@
 
 
 
-<div class="container" style="max-width: 720px;">
+    <div class="container lgbtq" style="max-width: 720px;" >
 
 
     <div id="carouselExampleInterval" class="carousel slide text-center" data-bs-ride="carousel">
@@ -114,57 +116,59 @@
 
 
 
+<div >
+        <div class="feed-container">
 
-        <h1 style="margin: 3%">Check Friends Feed! </h1>
-        <article class="feed" th:each="post : ${allUserPosts}">
+            <h1>Feed</h1>
 
-            <div>
-                <a class="profile" th:href="${'/user/' + post.postAuthor.id}"
-                   th:text="${post.postAuthor.username}"></a>
-            </div>
+            <article class="feed" th:each="post : ${allUserPosts}">
 
-
-            <br>
-
-            <blockquote class="post-box">
-                <div class="post-box">
-                    <p class="text" th:text="${post.text}"></p>
-                    <p class="date" th:text="${post.createdAt}">Date:</p>
+                <div class="rain">
+                    <a class="profile" th:href="${'/user/' + post.postAuthor.id}"
+                       th:text="${post.postAuthor.username}"></a>
                 </div>
-            </blockquote>
-            <h2>Reply's</h2>
-
-            <br>
-
-            <blockquote class="reply-box">
-                <div th:if="${post.replyList != null}" th:each="reply : ${post.getReplyList()}">
-                    <p class="text" th:if="${reply != null}" th:text=" ${reply.reply}"></p>
-                    <br>
-                    <p class="date" th:if="${reply != null}" th:text=" ${reply.replyDate}">Date:</p>
-                </div>
-            </blockquote>
-
-            <blockquote class="reply-form">
-                <div class="reply-container">
-                    <form action="/add-Reply" method="post">
-                        <fieldset>
-                            <legend></legend>
-                            <label for="reply">Reply</label>
-                            <input type="text" name="reply" id="reply">
-                            <input type="hidden" name="id" th:value="${post.id}">
-
-                            <input type="submit" value="Submit Post">
-                        </fieldset>
-                    </form>
-                </div>
-            </blockquote>
-        </article>
 
 
+                <br>
+
+                <blockquote class="post-box">
+                    <div class="post-box">
+                        <p class="text" th:text="${post.text}"></p>
+                        <p class="date" th:text="${post.createdAt}">Date:</p>
+                    </div>
+                </blockquote>
+                <h2>Reply's</h2>
+
+                <br>
+
+                <blockquote class="reply-box">
+                    <div th:if="${post.replyList != null}" th:each="reply : ${post.getReplyList()}">
+                        <p class="text" th:if="${reply != null}" th:text=" ${reply.reply}"></p>
+                        <br>
+                        <p class="date" th:if="${reply != null}" th:text=" ${reply.replyDate}">Date:</p>
+                    </div>
+                </blockquote>
+
+                <blockquote class="reply-form">
+                    <div class="reply-container">
+                        <form class="rain" action="/add-Reply" method="post">
+                            <fieldset>
+                                <legend></legend>
+                                <label for="reply">Reply</label>
+                                <input type="text" name="reply" id="reply">
+                                <input type="hidden" name="id" th:value="${post.id}">
+
+                                <input class="btn" type="submit" value="Submit Post">
+                            </fieldset>
+                        </form>
+                    </div>
+                </blockquote>
+            </article>
+        </div>
 
 
 
-
+</div>
 
 
         <footer  th:replace="fragments/footer-minimal :: footer"></footer>

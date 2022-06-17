@@ -24,7 +24,7 @@
 
 <div>
 
-    <form id="follow-button" th:if="${isFollowing == false && username != appUsername && appUser != null}" th:action="${'/follow/' + appUserId}" th:method="PUT">
+    <form id="follow-button" th:if="${isFollowing == false && appUser != null}" th:action="${'/follow/' + appUserId}" th:method="PUT">
 
 
         <input class="button" type="submit" th:value="${'Follow ' + appUsername} " th:d="${isFollowing == true}">
@@ -41,8 +41,6 @@
     <p th:text="${user.dateOfBirth}"></p>
     <h2>Bio</h2>
     <p th:text="${user.bio}"></p>
-</div>
-
 
 
 <h2>User Posts</h2>
@@ -53,6 +51,7 @@
 <ul th:each="posts : ${post}">
     <li th:text="${'Post: '+ posts.text + ' Date: '+ posts.createdAt}"></li>
 </ul>
+</div>
 <!--    Font Awesome-->
 <script src="https://kit.fontawesome.com/7a5f3d2bb1.js" crossorigin="anonymous"></script>
 <!-- Optional JavaScript -->
