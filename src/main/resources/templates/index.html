@@ -119,8 +119,8 @@
         <article class="feed" th:each="post : ${allUserPosts}">
 
             <div>
-                <a class="profile" th:href="${'/user/' + appUserId}"
-                   th:text="${appUserName}"></a>
+                <a class="profile" th:href="${'/user/' + post.postAuthor.id}"
+                   th:text="${post.postAuthor.username}"></a>
             </div>
 
 
