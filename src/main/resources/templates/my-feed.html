@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/user-details.css">
     <link rel="stylesheet" href="/css/feed.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
+    <link rel="stylesheet" type="text/css" href="css/button3.css">
 
 </head>
 <body>
@@ -21,9 +23,9 @@
     <div th:replace="/fragments/nav-header"/>
 
 </header>
+    <div class="pond">
 
 <main class="feed-container">
-
     <h1>Feed</h1>
 
     <article class="feed" th:each="post : ${allUserPosts}">
@@ -71,6 +73,7 @@
     </article>
 </main>
 
+    </div>
 <!--    Font Awesome-->
 <script src="https://kit.fontawesome.com/7a5f3d2bb1.js" crossorigin="anonymous"></script>
 <!-- Optional JavaScript -->
