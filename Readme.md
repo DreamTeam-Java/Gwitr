@@ -1,12 +1,11 @@
 # Gwiter
 
 
-- Front end Flow ![](src/main/resources/static/img/gwiterlogo2.png)
+- Social media and news App ![](src/main/resources/static/img/gwiterlogo2.png)
 
 
 
 
-- Social media and news App
 ****
 
 ## Port Instructions
