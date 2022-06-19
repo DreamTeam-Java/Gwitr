@@ -41,19 +41,25 @@ public class HomeController {
         }
     }
 
+    @GetMapping("/test")
+    public String getLonginPage(){
+        return "test";
+    }
+
+
     @GetMapping("/")
     public String getHomePage(Principal p, Model m) throws IOException {
 
         //News stuff
         NewsWriter nW = new NewsWriter();
-        News x = nW.newsReport();
-        List<News.Result> sut = x.getResults();
+        News apiRequestHandler = nW.newsReport();
+        List<News.Result> newYorkTimesData = apiRequestHandler.getResults();
 
         //News stuff
 
         //News stuff
         boolean isSigned = p != null;
-        m.addAttribute("newsResults", sut);
+        m.addAttribute("newsResults", newYorkTimesData);
         m.addAttribute("isSignedin", isSigned);
         //News stuff
 
