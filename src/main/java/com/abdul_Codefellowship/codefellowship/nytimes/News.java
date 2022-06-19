@@ -46,6 +46,9 @@ public class Result{
         return multimedia.get(multimedia.size() -1).getUrl();
     }
     public String getPictureMedium(){
+        if(multimedia == null) {
+            return "nothing here to see" ;
+        }
         return multimedia.get(multimedia.size() -2).getUrl();
     }
 
